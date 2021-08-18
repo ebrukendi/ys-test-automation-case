@@ -1,6 +1,6 @@
 Add Remove Favorite Restaurant Spec
 ==========================
-tags: AllLogin
+tags: LoginCases,AllTest
 
 * Open the Yemeksepeti homepage
 * Go to Yemek Sepeti City Page

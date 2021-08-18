@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.LoginPage;
+import page.HomePage;
+import page.RestaurantDetailPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -50,6 +52,25 @@ public class StepImplementation  {
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='ui-id-1']/div[1]/span/strong")));
 
         assertThat(errorMessageText.getText()).contains(errorMessage);
+        Gauge.captureScreenshot();
+        Gauge.writeMessage("User login failed...");
+    }
+
+    @Step("Check <ErrorMessage> for <mail> null charachter login")
+    public void checkErrorMessageForNullCharachterLogin(String errorMessage, String type) {
+        WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
+        if(type=="mail"){
+            WebElement errorMessageText = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"login-form\"]/div[1]/div/small\n")));
+            assertThat(errorMessageText.getText()).contains(errorMessage);
+        }
+        else if(type=="pass"){
+            WebElement errorMessageText = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"login-form\"]/div[2]/div/small")));
+            assertThat(errorMessageText.getText()).contains(errorMessage);
+        }
+
+        Gauge.captureScreenshot();
         Gauge.writeMessage("User login failed...");
     }
 
@@ -62,17 +83,16 @@ public class StepImplementation  {
 
     @Step("Add favorite restaurant")
     public void addFavoriteRestaurant() throws InterruptedException {
-        WebElement newRestaurantsTab = Driver.webDriver.findElement(By.xpath("//*[@data-content-id='new-restaurants']"));
-        newRestaurantsTab.click();
-
-        WebElement firstRestaurantLink = Driver.webDriver.findElement(By.xpath("//*[@id=\"new-restaurants\"]/div[1]/div[1]/a"));
-        firstRestaurantLink.click();
-
-        WebElement favButton = Driver.webDriver.findElement(By.xpath("//*[@id=\"restaurantDetail\"]/div[2]/div[1]/div/div/div[1]"));
-        favButton.click();
-
-        String restaurantName = Driver.webDriver.findElement(By.xpath("//*[@id=\"restaurantDetail\"]/div[1]/div/div[2]/div[1]/div/p")).getText();
-        Gauge.writeMessage(restaurantName + " to added favorite restaurants");
+        HomePage homePage = new HomePage();
+        //homePage.newRestaurantsTab.click();
+        homePage.clickRestaurantsTab();
+        Gauge.captureScreenshot();
+//        homePage.firstRestaurantElm.click();
+//
+//        RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
+//        restaurantDetailPage.favButton.click();
+//
+//        Gauge.writeMessage(restaurantDetailPage.restaurantName + " to added favorite restaurants");
     }
 
     @Step("Check selected restaurant in favorite list")
