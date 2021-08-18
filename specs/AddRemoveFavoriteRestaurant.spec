@@ -1,10 +1,10 @@
 Add Remove Favorite Restaurant Spec
 ==========================
-tags: LoginCases,AllTest
+tags: RestuarantCases,AllTest
 
 * Open the Yemeksepeti homepage
 * Go to Yemek Sepeti City Page
-* Enter Login with "yemeksepeticase@gmail.com" and "Yemekspt123."
+* Login with Success Username and Success Password Yemeksepeti
 * Check "Yemek Sepeti" After Login
 
 Add favorite restaurant
@@ -18,3 +18,8 @@ tags:SucCase,AddFavRest
 * Add favorite restaurant
 * Check selected restaurant in favorite list
 * Remove favorite restaurant
+
+Select city and Search Restaurant
+-----------
+tags:AA
+* Select city and search restaurant

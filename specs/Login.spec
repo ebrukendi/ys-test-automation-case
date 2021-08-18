@@ -1,6 +1,6 @@
 Login Spec
 ==========================
-tags: RestaurantCases,AllTest
+tags: LoginCases,AllTest
 
 * Open the Yemeksepeti homepage
 * Go to Yemek Sepeti City Page
@@ -8,48 +8,42 @@ tags: RestaurantCases,AllTest
 Wrong Username and Password Login
 -----------
 tags:WrongMailAndPass
-* Enter Login with "johndoe@gmail.com" and "123456"
+* Login with Wrong Username and Wrong Password Yemeksepeti
 * Check "Hatalı giriş" for failed login
 
 Correct username and wrong password login test
 -----------
-tags:WrongPass
-* Enter Login with "kendiebru@gmail.com" and "123456"
+tags:CorrectUserWrongPass
+* Login with Success Username and Wrong Password Yemeksepeti
 * Check "Hatalı giriş" for failed login
 
 Empty username and password login test
 -----------
 tags:Emptyuserandpass
-* Enter Login with "" and ""
+* Login with Empty Username and Empty Password Yemeksepeti
 * Check "Lütfen kullanıcı adınızı/e-postanızı giriniz" for "mail" null charachter login
 * Check "Lütfen şifrenizi giriniz." for "pass" null charachter login
 
 Wrong username and empty password login test
 -----------
-tags:Nullpass
-* Enter Login with "ebru" and ""
+tags:WrongUserEmptyPass
+* Login with Wrong Username and Empty Password Yemeksepeti
 * Check "Lütfen şifrenizi giriniz." for "pass" null charachter login
 
 Correct username and empty password login test
 -----------
-tags:Nullpass
-* Enter Login with "kendiebru@gmail.com" and ""
+tags:CorrectUserEmptyPass
+* Login with Success Username and Empty Password Yemeksepeti
 * Check "Lütfen şifrenizi giriniz." for "pass" null charachter login
 
 Empty username and wrong password login test
 -----------
-tags:Nullpass
-* Enter Login with "" and "123456"
+tags:EmptyUserWrongPass
+*Login with Empty Username and Wrong Password Yemeksepeti
 * Check "Lütfen kullanıcı adınızı/e-postanızı giriniz" for "mail" null charachter login
-
-Wrong username and correct password login test
------------
-tags:wrongusercorrectpass
-* Enter Login with "asd" and "123456"
-* Check "Hatalı giriş" for failed login
 
 Successful Login
 -----------
-tags:SucCase
-* Enter Login with "kendiebru@gmail.com" and "Eskela123!"
-* Check "Ebru Gülek" After Login
+tags:SucLogin
+* Login with Success Username and Success Password Yemeksepeti
+* Check "Yemek Sepeti" After Login

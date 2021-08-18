@@ -17,21 +17,14 @@ public class StepImplementation  {
     public void gotoCityPage() throws InterruptedException {
         WebElement cityButton = Driver.webDriver.findElement(By.xpath("//a[@href='/hatay']"));
         cityButton.click();
-
         Gauge.writeMessage("Page title is %s", Driver.webDriver.getTitle());
     }
 
     @Step("Enter Login with <Email> and <Password>")
     public void enterEmailAndPassword(String email, String password) throws InterruptedException {
-        //WebElement usernameInput = Driver.webDriver.findElement(By.xpath("//input[@id='UserName']"));
-        //WebElement passwordInput = Driver.webDriver.findElement(By.xpath("//input[@id='password']"));
         LoginPage loginPage =  new LoginPage();
-        //usernameInput.sendKeys(email);
-        //passwordInput.sendKeys(password);
         loginPage.setLoginData(email, password);
         loginPage.clickLoginButton();
-        //WebElement loginButton = Driver.webDriver.findElement(By.xpath("//button[@id='ys-fastlogin-button']"));
-        //loginButton.click();
         Gauge.captureScreenshot();
     }
 
@@ -105,4 +98,11 @@ public class StepImplementation  {
     public void removeSelectedRestaurant() throws InterruptedException {
 
     }
+    @Step("Select city and search restaurant")
+    public void selectCitySearchRestaurant() throws InterruptedException {
+        HomePage homePage = new HomePage();
+        homePage.selectCityandSearchRestaurant();
+        Gauge.captureScreenshot();
+    }
+
 }
