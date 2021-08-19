@@ -13,4 +13,4 @@ tags:FavRest
 * Select city and search restaurant
 * Add favorite restaurant
 * Check selected restaurant in favorite list
-//* Check "Favorilerden Çıkar" after click fav button
+

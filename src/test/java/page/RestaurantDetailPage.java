@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestaurantDetailPage extends BasePage {
     public WebElement favButton = Driver.webDriver.findElement(By.className("favorite-button"));
-    public WebElement restaurantName = Driver.webDriver.findElement(By.className("restaurantName"));
 
     public void clickFavButton() {
         favButton.click();

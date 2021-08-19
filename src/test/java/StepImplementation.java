@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StepImplementation {
     @Step("Go to Yemek Sepeti City Page")
     public void gotoCityPage() throws InterruptedException {
-        WebElement cityButton = Driver.webDriver.findElement(By.xpath("//a[@href='/hatay']"));
+        WebElement cityButton = Driver.webDriver.findElement(By.xpath("//a[@href='/istanbul']"));
         cityButton.click();
         Gauge.writeMessage("Page title is %s", Driver.webDriver.getTitle());
     }
@@ -81,10 +81,12 @@ public class StepImplementation {
 
     @Step("Add favorite restaurant")
     public void addFavoriteRestaurant() throws InterruptedException {
-        HomePage homePage = new HomePage();
         RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
         restaurantDetailPage.clickFavButton();
-        String favRestaurant = homePage.readData();
+
+        BasePage base = new BasePage();
+        String favRestaurant = base.readData();
+
         Gauge.writeMessage(favRestaurant + " to added favorite restaurants");
     }
 
@@ -95,6 +97,16 @@ public class StepImplementation {
 
         WebElement favoriteMenu = Driver.webDriver.findElement(By.xpath("//a[@href='/hesabim/favorilerim']"));
         favoriteMenu.click();
+
+        BasePage base = new BasePage();
+        String favRestaurant = base.readData();
+
+        WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
+        WebElement restaurantNameElm = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.className("favorites")));
+        assertThat(restaurantNameElm.getText()).contains(favRestaurant);
+        Gauge.writeMessage("Checked favorites list" + favRestaurant);
+        Gauge.captureScreenshot();
     }
 
     @Step("Remove favorite restaurant")
@@ -102,16 +114,6 @@ public class StepImplementation {
 
     }
 
-    @Step("Check <favtext> after click fav button")
-    public void checkAfterFavButton(String favtext) throws InterruptedException {
-//        WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
-//        WebElement userNameInfo = wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(By.className("favorite-button")));
-        RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
-        restaurantDetailPage.checkfavbuttontext(favtext);
-
-
-    }
 
 
 

@@ -3,10 +3,9 @@ package page;
 import driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.*;
+
 public class BasePage {
 
     private  WebDriver webDriver;
@@ -29,5 +28,35 @@ public class BasePage {
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
+    }
+
+    public void writeData(String text) {
+        String TestFile = "favRestaurant.txt";
+        File FC = new File(TestFile);
+        try {
+            FC.createNewFile();
+
+            FileWriter FW = new FileWriter(TestFile);
+            BufferedWriter BW = new BufferedWriter(FW);
+            BW.write(text);
+            BW.close();
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
+    public String readData() {
+        String line = "";
+        try {
+            FileReader fr = new FileReader("favRestaurant.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            line = br.readLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return line;
     }
 }
