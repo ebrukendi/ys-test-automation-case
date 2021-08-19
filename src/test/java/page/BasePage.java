@@ -18,37 +18,24 @@ public class BasePage {
         webDriver.findElement(selector).click();
     }
 
-    public void waitFor(int... timeOut){
-        int timeOutI = 2;
-        if (timeOut.length != 0){
-            timeOutI = timeOut[0];
-        }
-        try {
-            Thread.sleep(timeOutI * 1000L);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
-    }
-
-    public void writeData(String text) {
-        String TestFile = "favRestaurant.txt";
-        File FC = new File(TestFile);
+    public void writeData(String text, String fileName) {
+        File FC = new File(fileName);
         try {
             FC.createNewFile();
 
-            FileWriter FW = new FileWriter(TestFile);
+            FileWriter FW = new FileWriter(fileName);
             BufferedWriter BW = new BufferedWriter(FW);
             BW.write(text);
             BW.close();
-        } catch (IOException ex) {
-            System.out.println(ex.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public String readData() {
+    public String readData(String fileName) {
         String line = "";
         try {
-            FileReader fr = new FileReader("favRestaurant.txt");
+            FileReader fr = new FileReader(fileName);
             BufferedReader br = new BufferedReader(fr);
 
             line = br.readLine();

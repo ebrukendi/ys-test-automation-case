@@ -1,6 +1,5 @@
 package page;
 
-import com.thoughtworks.gauge.Step;
 import driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

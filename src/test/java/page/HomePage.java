@@ -1,9 +1,7 @@
 package page;
 
-import java.io.*;
 import java.util.List;
 
-import com.thoughtworks.gauge.Gauge;
 import driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,7 +21,7 @@ public class HomePage extends BasePage {
         List<WebElement> restaurantList = Driver.webDriver.findElements(By.cssSelector(".ys-item"));
 
         WebElement restaurantName = restaurantList.get(0).findElement(By.cssSelector(".restaurant-display-name"));
-        writeData(restaurantName.getText());
+        writeData(restaurantName.getText(), "favRestaurant.txt");
         restaurantName.click();
     }
 
