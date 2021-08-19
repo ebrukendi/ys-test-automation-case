@@ -14,10 +14,12 @@ The tests are run on Chrome by default.
 ### Prerequisites
 This case requires the following softwares to run.
 * [Java 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or above
-    * Note that Gauge works with Java 1.6 and above. But this particular example uses Java 1.7
+    * Note that Gauge works with Java 1.6 and above. But this particular example uses Java 1.8
 * [Gauge](https://docs.gauge.org/getting_started/installing-gauge.html)
+   * This particular example uses gauge 1.0.8 ->(choco install gauge --version=1.0.8)
 * Gauge Java plugin
     * can be installed using `gauge install java`
+    * This particular example uses 0.7.2 ->(gauge install java --version=0.7.2)
 * Chrome
 
 ### Setting up Maven
@@ -53,4 +55,6 @@ If you want to run with tags, pass tag name in execute command
 mvn gauge:execute -DspecsDir=specs -Dtags="AllLogin"
 ```
 
+## Report Directory
 
+Test reports can be controlled, after tests are runned under "ys-test-automation-case\reports\html-report" folder as open index.html

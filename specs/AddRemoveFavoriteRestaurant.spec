@@ -9,14 +9,15 @@ tags: RestuarantCases,AllTest
 
 Add favorite restaurant
 -----------
-tags:FavRest
+tags:AddFavRest
 * Select city and search restaurant
 * Add favorite restaurant
 * Check selected restaurant in favorite list
 
 Add/Remove favorite restaurant
 -----------
-tags:FavRest
+tags:AddRemoved
+FavRest
 * Select city and search restaurant
 * Add favorite restaurant
 * Check selected restaurant in favorite list
