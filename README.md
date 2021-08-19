@@ -1,4 +1,4 @@
-## YS QA Automation Case Study
+# YS QA Automation Case Study
 This respository contains Gauge+Selenium Test Automation Project
 
 This is an automation project for doing web automation testing with [Gauge](http://getgauge.io). This project tests some of the functionalities of the [ys](https://www.yemeksepeti.com) web application.
@@ -8,7 +8,7 @@ This is an automation project for doing web automation testing with [Gauge](http
 * Selenium
 * Gauge
 
-# Running this automation project
+## Running this automation project
 The tests are run on Chrome by default.
 
 ### Prerequisites
