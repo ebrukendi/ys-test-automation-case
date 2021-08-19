@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.BasePage;
 import page.LoginPage;
 import page.HomePage;
 import page.RestaurantDetailPage;
@@ -12,7 +13,7 @@ import page.RestaurantDetailPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class StepImplementation  {
+public class StepImplementation {
     @Step("Go to Yemek Sepeti City Page")
     public void gotoCityPage() throws InterruptedException {
         WebElement cityButton = Driver.webDriver.findElement(By.xpath("//a[@href='/hatay']"));
@@ -30,11 +31,8 @@ public class StepImplementation  {
 
     @Step("Check <Username> After Login")
     public void checkUsernameAfterLogin(String username) {
-        WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
-        WebElement userNameInfo = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.id("ysUserName")));
-
-        assertThat(userNameInfo.getText()).contains(username);
+        HomePage homePage = new HomePage();
+        homePage.checkUsername(username);
         Gauge.writeMessage("User logins successful...");
     }
 
@@ -74,35 +72,47 @@ public class StepImplementation  {
         assertThat(Driver.webDriver.getTitle()).contains("Yemek Sepeti");
     }
 
+    @Step("Select city and search restaurant")
+    public void selectCitySearchRestaurant() throws InterruptedException {
+        HomePage homePage = new HomePage();
+        homePage.searchRestaurantOnStates();
+        Gauge.captureScreenshot();
+    }
+
     @Step("Add favorite restaurant")
     public void addFavoriteRestaurant() throws InterruptedException {
         HomePage homePage = new HomePage();
-        //homePage.newRestaurantsTab.click();
-        homePage.clickRestaurantsTab();
-        Gauge.captureScreenshot();
-//        homePage.firstRestaurantElm.click();
-//
-//        RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
-//        restaurantDetailPage.favButton.click();
-//
-//        Gauge.writeMessage(restaurantDetailPage.restaurantName + " to added favorite restaurants");
+        RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
+        restaurantDetailPage.clickFavButton();
+        String favRestaurant = homePage.readData();
+        Gauge.writeMessage(favRestaurant + " to added favorite restaurants");
     }
 
     @Step("Check selected restaurant in favorite list")
     public void checkSelectedRestaurant() throws InterruptedException {
-        WebElement favoriteTab = Driver.webDriver.findElement(By.xpath("//*[@data-content-id='favorites']"));
-        favoriteTab.click();
+        WebElement userName = Driver.webDriver.findElement(By.xpath("//b[@id='ysUserName']"));
+        userName.click();
+
+        WebElement favoriteMenu = Driver.webDriver.findElement(By.xpath("//a[@href='/hesabim/favorilerim']"));
+        favoriteMenu.click();
     }
 
     @Step("Remove favorite restaurant")
     public void removeSelectedRestaurant() throws InterruptedException {
 
     }
-    @Step("Select city and search restaurant")
-    public void selectCitySearchRestaurant() throws InterruptedException {
-        HomePage homePage = new HomePage();
-        homePage.selectCityandSearchRestaurant();
-        Gauge.captureScreenshot();
+
+    @Step("Check <favtext> after click fav button")
+    public void checkAfterFavButton(String favtext) throws InterruptedException {
+//        WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
+//        WebElement userNameInfo = wait.until(
+//                ExpectedConditions.visibilityOfElementLocated(By.className("favorite-button")));
+        RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
+        restaurantDetailPage.checkfavbuttontext(favtext);
+
+
     }
+
+
 
 }

@@ -4,6 +4,8 @@ import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeSuite;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class Driver {
 
     // Holds the WebDriver instance
@@ -14,6 +16,7 @@ public class Driver {
     @BeforeSuite
     public void initializeDriver(){
         webDriver = DriverFactory.getDriver();
+        webDriver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
     }
 
     // Close the webDriver instance

@@ -7,19 +7,10 @@ tags: RestuarantCases,AllTest
 * Login with Success Username and Success Password Yemeksepeti
 * Check "Yemek Sepeti" After Login
 
-Add favorite restaurant
------------
-tags:SucCase,AddFavRest
-* Add favorite restaurant
-
 Add/Remove favorite restaurant
 -----------
-tags:SucCase,AddFavRest
+tags:FavRest
+* Select city and search restaurant
 * Add favorite restaurant
 * Check selected restaurant in favorite list
-* Remove favorite restaurant
-
-Select city and Search Restaurant
------------
-tags:AA
-* Select city and search restaurant
+//* Check "Favorilerden Çıkar" after click fav button
