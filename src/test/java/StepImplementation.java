@@ -82,7 +82,7 @@ public class StepImplementation {
     @Step("Add favorite restaurant")
     public void addFavoriteRestaurant() throws InterruptedException {
         RestaurantDetailPage restaurantDetailPage = new RestaurantDetailPage();
-        restaurantDetailPage.clickFavButton();
+        restaurantDetailPage.addFavButton.click();
 
         BasePage base = new BasePage();
         String favRestaurant = base.readData();
@@ -102,16 +102,27 @@ public class StepImplementation {
         String favRestaurant = base.readData();
 
         WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
-        WebElement restaurantNameElm = wait.until(
+        WebElement favoritesElm = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.className("favorites")));
-        assertThat(restaurantNameElm.getText()).contains(favRestaurant);
+        assertThat(favoritesElm.getText()).contains(favRestaurant);
         Gauge.writeMessage("Checked favorites list" + favRestaurant);
         Gauge.captureScreenshot();
     }
 
     @Step("Remove favorite restaurant")
     public void removeSelectedRestaurant() throws InterruptedException {
+        BasePage base = new BasePage();
+        String favRestaurant = base.readData();
 
+        WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
+        WebElement favoritesElm = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.className("favorites")));
+
+        WebElement favoritedRestaurant = favoritesElm.findElement(By.linkText(favRestaurant));
+        favoritedRestaurant.click();
+
+        WebElement removeFavButton = Driver.webDriver.findElement(By.cssSelector(".favorite-button.delete"));
+        removeFavButton.click();
     }
 
 
